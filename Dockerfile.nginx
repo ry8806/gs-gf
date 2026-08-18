@@ -1,0 +1,12 @@
+# just to build the vue app
+FROM node:24.15.0-alpine3.23 AS vue-build
+
+WORKDIR /web
+COPY web/package*.json ./
+RUN npm ci
+COPY web/ ./
+RUN npm run build
+
+FROM nginx:1.31.3-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=vue-build /web/dist /usr/share/nginx/html

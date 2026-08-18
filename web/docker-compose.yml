@@ -1,0 +1,14 @@
+# run: docker compose up
+
+services:
+  gsgfvue:
+    environment:
+      - NPM_CONFIG_CACHE=/src/.npm-cache-docker/
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: host
+    command: npm run dev -- --host 0.0.0.0
+    volumes:
+      - .:/app
+      - /app/node_modules

@@ -1,0 +1,22 @@
+info:
+  name: Create Order
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: https://gymfish.ryansouthgate.com/api/orders
+  body:
+    type: json
+    data: |-
+      {
+        "productId": 1,
+        "quantity": 10
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

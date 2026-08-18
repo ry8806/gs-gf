@@ -1,0 +1,13 @@
+FROM node:24.15.0-alpine3.23
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci
+
+COPY . .
+
+EXPOSE 5173
+
+ENTRYPOINT [ ]

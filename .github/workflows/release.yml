@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  checkout:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+  release:
+    runs-on: self-hosted
+    needs: checkout
+    steps:
+      - name: Build/Deploy Docker Image on Host
+        run: ./dc_release.sh
+        shell: bash
